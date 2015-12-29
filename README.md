@@ -1,11 +1,9 @@
-# App Update for Meteor [![Build Status](https://api.shippable.com/projects/54add975d46935d5fbc1bef7/badge?branchName=master)](https://app.shippable.com/projects/54add975d46935d5fbc1bef7/builds/latest)
+# App Update for Meteor
 
 Control Meteor Hotcode push and gracefully notify the user of an update.
 
-Need Help? [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/arsnebula/help)
-
 ## Current Version
-**v1.0.6**
+**v1.1.0**
 
 ## Configuration
 
@@ -17,8 +15,11 @@ Exmaple settings.json file:
 ```js
 {
   "public": {
-    "env": "production"
-   }
+    "env": "production",
+    "appupdate": {
+      "template": "<your template name>"
+    }
+  }
 }
 ```
 
@@ -31,27 +32,37 @@ Before initializing you can set any of the following settings (client only):
 
 ## Usage
 
-To initialize the AppUpdate package in the Meteor app, call the ``preventReload()`` function. It is recommended to call this from the ``lib`` folder in the app.
+To initialize the AppUpdate package in the Meteor app, call the ``preventReload()`` function from a client side only block.
 
-``AppUpdate.reload.preventReload()``.
+One suggestion is to create a javascript file in the client directory of your meteor app and add:
+
+```js
+Meteor.startup(function() {
+  AppUpdate.reload.preventReload()
+});
+```
 
 To prevent refreshing in a development environment:
 
-    if(Meteor.isClient) {
-      AppUpdate.reload.settings.environments.development = true;
-      AppUpdate.reload.preventReload();
-    }
+```js
+  if(Meteor.isClient) {
+    AppUpdate.reload.settings.environments.development = true;
+    AppUpdate.reload.preventReload();
+  }
+```
 
 To notify the user when a new app update is available, simply add the template to your page:
 
 ``{{> appUpdatePrompt}}``
 
+This will use the template you have defined in the settings.public.appupdate.template field or the default template if it was not set.
+
 ## Attribution and Acknowledgements
 
-This package was inspired by the Meteor Package (internal to the WebApp package):
+This package was forked and updated from the Ars Nebula package of the same name.
 
-https://github.com/meteor/mobile-packages/tree/master/packages/mdg:reload-on-resume
+https://github.com/skifaster/meteor-app-update
 
 ## License
 
-[MIT](http://choosealicense.com/licenses/mit/) - Copyright (c) 2015 [Ars Nebula](http://www.arsnebula.com)
+[MIT](http://choosealicense.com/licenses/mit/) - Copyright (c) 2015 [C-SATS](https://csats.com)

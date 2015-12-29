@@ -1,15 +1,15 @@
 'use strict';
 
 Package.describe({
-  'name': 'arsnebula:appupdate',
+  'name': 'csats:appupdate',
   'summary': 'Control Meteor Hotcode push and gracefully notify the user of an update.',
-  'version': '1.0.6',
-  'git': 'https://github.com/arsnebula/meteor-app-update.git'
+  'version': '1.1.0',
+  'git': 'https://github.com/csats/meteor-app-update.git'
 });
 
 Package.onUse(function(api) {
 
-  api.versionsFrom('METEOR@1.0');
+  api.versionsFrom('METEOR@1.2');
   api.use('meteor-platform');
   api.use('reactive-var');
   api.use('ecmascript');
