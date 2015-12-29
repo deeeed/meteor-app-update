@@ -1,9 +1,13 @@
 <template name="appUpdatePrompt">
-  <div id="newUpdateWatcher">
+  <div id="appupdate-container">
     {{#if appHasUpdate}}
+      {{>UI.dynamic template=templateName}}
+    {{/if}}
+  </div>
+</template>
+
+<template name="defaultAppUpdatePrompt">
     <div class="appupdate-prompt">
       A new version of the app is available! <button class="reload">Click here to Update</button>
     </div>
-    {{/if}}
-  </div>
 </template>
